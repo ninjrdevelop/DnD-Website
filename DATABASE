@@ -1,0 +1,86 @@
+== USERS
+
+id                   | UUID
+username             | text
+email                | text
+password             | text
+subscription_level   | integer
+permission_level     | integer
+sourcebooks          | JSONB          | JSON array of sourcebooks user has access to
+
+
+== CHARACTERS
+
+id                  | UUID           |
+label               | text           |
+user_id             | UUID           | FK for USERS.id
+char_name           | text           |
+char_classes        | JSONB          | Array of JSON objects describing character classes (class uuid, subclass uuid, level)
+char_race           | UUID           | FK for RACES.id
+char_info           | JSONB          | JSON array describing things like alignment, personality, traits, ideals, bonds, flaws, appearance
+char_background     | UUID           | FK for BACKGROUNDS.id
+char_notes          | text           |
+char_stats          | JSONB          | Player attributes, proficiency/expertise in skills / saving throws
+char_spells         | JSONB          | JSON array of spells available to character (list of UUIDs)
+char_spellslots     | JSONB          | JSON array describing spellslots available & used
+char_abilities      |
+char_feats          | JSONB          | JSON array of feats character has taken (list of UUIDs)
+
+
+== BACKGROUNDS
+
+id                  | UUID
+name                | text
+is_homebrew         | boolean         | Default: false
+sourcebook_id       | UUID            | PK for SOURCEBOOKS.id
+
+
+== CLASSES
+
+id                  | UUID
+name                | text
+sourcebook_id       | UUID            | PK for SOURCEBOOKS.id
+is_homebrew         | boolean         | Default: false
+
+
+== SUBCLASSES
+id                  | UUID
+name                | text
+sourcebook_id       | UUID            | PK for SOURCEBOOKS.id
+is_homebrew         | boolean         | Default: false
+start_level         | int             | Level this subclass becomes available to the parent class
+
+
+== RACES
+
+id                  | UUID
+name                | text
+is_homebrew         | boolean         | Default: false
+sourcebook_id       | UUID            | PK for SOURCEBOOKS.id
+
+
+== SOURCEBOOKS
+
+id                  | UUID
+name                | Text
+release_date        | Date
+ 
+
+== FEATS
+
+id                  | UUID             |
+name                | Text             |
+description         | Text             |
+effect              | JSONB            | JSON object describing changes this feat makes to the charactersheet
+
+== SPELLS
+
+id                  | UUID             |
+name                | Text             |
+level               | Integer          | Spell level
+range               | Integer          | In feet. 0 for touch.
+duration            | Integer          | In minutes. 0 for instantanious
+is_concentration    | Boolean          | Default: false
+description         | Text             |
+damage              | text             | E.g: "3d10 + 3"
+sourcebook_id       | UUID            | PK for SOURCEBOOKS.id
