@@ -1,17 +1,17 @@
 == USERS
 
-id                   | UUID
-username             | text
-email                | text
-password             | text
-subscription_level   | integer
-permission_level     | integer
+id                   | UUID           | Unique, primary key
+username             | text           |
+email                | text           |
+password             | text           |
+subscription_level   | integer        |
+permission_level     | integer        |
 sourcebooks          | JSONB          | JSON array of sourcebooks user has access to
 
 
 == CHARACTERS
 
-id                  | UUID           |
+id                  | UUID           | Unique, primary key
 label               | text           |
 user_id             | UUID           | FK for USERS.id
 char_name           | text           |
@@ -29,23 +29,23 @@ char_feats          | JSONB          | JSON array of feats character has taken (
 
 == BACKGROUNDS
 
-id                  | UUID
-name                | text
+id                  | UUID            | Unique, primary key
+name                | text            |
 is_homebrew         | boolean         | Default: false
 sourcebook_id       | UUID            | PK for SOURCEBOOKS.id
 
 
 == CLASSES
 
-id                  | UUID
-name                | text
+id                  | UUID            | Unique, primary key
+name                | text            |
 sourcebook_id       | UUID            | PK for SOURCEBOOKS.id
 is_homebrew         | boolean         | Default: false
 
 
 == SUBCLASSES
-id                  | UUID
-name                | text
+id                  | UUID            | Unique, primary key
+name                | text            |
 sourcebook_id       | UUID            | PK for SOURCEBOOKS.id
 is_homebrew         | boolean         | Default: false
 start_level         | int             | Level this subclass becomes available to the parent class
@@ -53,29 +53,29 @@ start_level         | int             | Level this subclass becomes available to
 
 == RACES
 
-id                  | UUID
-name                | text
+id                  | UUID            | Unique, primary key
+name                | text            |
 is_homebrew         | boolean         | Default: false
 sourcebook_id       | UUID            | PK for SOURCEBOOKS.id
 
 
 == SOURCEBOOKS
 
-id                  | UUID
-name                | Text
-release_date        | Date
+id                  | UUID            | Unique, primary key
+name                | Text            |
+release_date        | Date            |
  
 
 == FEATS
 
-id                  | UUID             |
+id                  | UUID             | Unique, primary key
 name                | Text             |
 description         | Text             |
 effect              | JSONB            | JSON object describing changes this feat makes to the charactersheet
 
 == SPELLS
 
-id                  | UUID             |
+id                  | UUID             | Unique, primary key
 name                | Text             |
 level               | Integer          | Spell level
 range               | Integer          | In feet. 0 for touch.
